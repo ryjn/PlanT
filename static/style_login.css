@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Poppins:wght@600&family=Roboto:wght@500&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    padding-top: 50px;
+    min-height: 100vh;
+}
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 3px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: purple;
+}
+
+header .logo {
+    color: #fff;
+    font-weight: 700;
+    font-size: 2em;
+    letter-spacing: 2px;
+}
+
+header ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header ul li {
+    list-style: none;
+    margin-left: 20px;
+}
+
+header ul li a {
+    text-decoration: none;
+    padding: 6px 15px;
+    color: #fff;
+    border-radius: 20px;
+}
+
+header ul li a.active,
+a:hover {
+    background: #fff;
+    color: #2b1055;
+}
+
+#flash_hide {
+    -o-animation: cssAnimation 0s ease-in 3s forwards;
+    -webkit-animation: cssAnimation 3s forwards;
+    animation: cssAnimation 3s forwards;
+}
+
+@keyframes cssAnimation {
+    0% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes cssAnimation {
+    0% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.error {
+    background-color: #FF9A9A;
+    padding: 6px 15px;
+}
+
+.success {
+    background-color: #74FF94;
+    padding: 6px 15px;
+}

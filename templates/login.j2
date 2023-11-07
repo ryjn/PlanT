@@ -1,0 +1,53 @@
+<html>
+
+<head>
+    <title>Login</title>
+    <link href="../static/style_login.css" rel="stylesheet">
+    <script language="JavaScript">
+        function goHome() {
+            window.location.href = "/";
+        }
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+        function delete_flash(flash) {
+            $(flash).parent().remove()
+        }
+    </script>
+</head>
+
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="{{ category }}" id="flash_hide">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" onclick="delete_flash(this)">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <header>
+        <a href="/" class="logo">PlanT</a>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/signup">Sign Up</a></li>
+            <li><a class="active" href="/login">Login</a></li>
+        </ul>
+    </header>
+    <h1>Login Page</h1>
+    <form id="login" action="/login" method="post">
+        <fieldset>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+            <br>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+        </fieldset>
+        <input type="submit" value="Login" name="login" class="btn btn-primary" id="login">
+        <input class="btn" type="button" value="Cancel" onClick="goHome()">
+    </form>
+    <p>New User? <a href="/signup">Register</a></p>
+</body>
+
+</html>

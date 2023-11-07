@@ -1,0 +1,115 @@
+<html>
+
+<head>
+    <title>Dashboard</title>
+    <link href="../static/style_dashboard.css" rel="stylesheet">
+    <script>
+        function showEventForm() {
+            let popup = document.getElementById("event_form").classList;
+            popup.add("active");
+        }
+        function hideEventForm() {
+            let popup = document.getElementById("event_form").classList;
+            popup.remove("active");
+        }
+        function showFriendForm() {
+            let popup = document.getElementById("friend_form").classList;
+            popup.add("active");
+        }
+        function hideFriendForm() {
+            let popup = document.getElementById("friend_form").classList;
+            popup.remove("active");
+        }
+        function delete_flash(flash) {
+            $(flash).parent().remove()
+        }
+    </script>
+</head>
+
+{% if calendar_error == 1 %}
+
+<body onload="showForm()">
+    {% else %}
+
+    <body>
+        {% endif %}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class=" {{ category }}" id="flash_hide">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" onclick="delete_flash(this)">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <header>
+            <a href="/" class="logo">PlanT</a>
+            <ul class="nav-links">
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/events">Events</a></li>
+                <li><a href="/friends">Friends</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </header>
+        <h1>Friends</h1>
+        <table border="1" cellpadding="5">
+            <legend>My Friends:</legend>
+            <!-- Access data tuple passed from app.py -->
+            {% if friend_check %}
+            {% if friend_data %}
+            <thead>
+                <tr>
+                    <!-- Iterate through each key in the first entry to get the column name -->
+                    {% for key in friend_data[0].keys() %}
+
+                    <!-- Create a <th> tag with the key inside of it, this will be our header row -->
+                    <th scope="col" data-field="{{ key }}" data-filter-control="input">{{ key }}</th>
+
+                    <!-- End of this for loop -->
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Now, iterate through every item in data -->
+                {% for item in friend_data %}
+                <tr>
+                    <!-- Then iterate through every key in the current item dictionary -->
+                    {% for key in item.keys() %}
+
+                    <!-- Create a <td> element with the value of that key in it -->
+                    <td> {{item[key]}} </td>
+                    {% endfor %}
+
+                </tr>
+            </tbody>
+            {% endfor %}
+            {% endif %}
+            {% else %}
+            <p>Looks like you have no users added! <a onclick="showFriendForm()">Add another user?</a></p>
+            {% endif %}
+        </table>
+
+        <div id=" class_buttons">
+            <button onclick="showFriendForm()">Add User</button>
+        </div>
+
+        <div class="popup" id="friend_form">
+            <div class="close_btn" onclick="hideFriendForm()">&times;</button></div>
+            <div class="form">
+                <h2>Add User</h2>
+                <div class="form_element">
+                    <form id="add_friend" action="/dashboard" method="post">
+                        <label for="friend_id">Display ID</label>
+                        <input type="text" id="friend_displayID" name="friend_displayID" placeholder="Enter Display ID"
+                            required>
+                        <input type="submit" value="Add User" id="submit_user_add" name="submit_user_add">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
