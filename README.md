@@ -9,7 +9,7 @@ Along with the POST request, include a JSON object in the following format: *{ '
 **The key for the category must be 'muscle category'**, as the microservice will search for this key.
 
 As an example in Python:
-'''
+```
 import requests
 import json
 
@@ -19,6 +19,7 @@ data = {
 }
 
 response = requests.post(url, json=data)
-'''
+```
+
 ## Receiving Data
 
