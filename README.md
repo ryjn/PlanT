@@ -35,4 +35,5 @@ else:
 ```
 
 ## UML Sequence Diagram
-![Blank diagram](https://github.com/ryjn/PlanT/assets/46828676/fd99403f-b4a3-45a0-b8d4-51140824f534)
+![Blank diagram](https://github.com/ryjn/PlanT/assets/46828676/5d94fdf7-b4f3-4105-9df7-e6ecbf72c3d9)
+
