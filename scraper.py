@@ -41,7 +41,6 @@ def get_exercises():
         }
 
     # Write results to JSON
-    time.sleep(5)
     print(f"Sending exercises for {filter}.")
     return jsonify(exercise_dict)
 
