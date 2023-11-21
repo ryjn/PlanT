@@ -22,4 +22,14 @@ response = requests.post(url, json=data)
 ```
 
 ## Receiving Data
+The microservices will return data in the form of a JSON object.
 
+In Python:
+```
+if response.status_code == 200:
+    result = response.json()
+    print(json.dumps(result, indent=2))
+else:
+    print(f"Error: {response.status_code}")
+    print(response.text)
+```
