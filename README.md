@@ -33,3 +33,6 @@ else:
     print(f"Error: {response.status_code}")
     print(response.text)
 ```
+
+## UML Sequence Diagram
+![Blank diagram](https://github.com/ryjn/PlanT/assets/46828676/fd99403f-b4a3-45a0-b8d4-51140824f534)
