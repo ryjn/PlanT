@@ -7,20 +7,14 @@ import time
 
 app = Flask(__name__)
 
-@app.route('/get_exercises', methods=['POST'])
+@app.route('/', methods=['GET','POST'])
 def get_exercises():
-    
-    # Get JSON data from request
-    req_json = request.get_json()
-
     # Identify muscle category
-    filter = req_json["muscle category"]
-
-    # Print receive message
-    print(f"Request recieved for {filter}.")
+    exercise_cat = str(request.args.get("muscle category"))
 
     # Create muscle category URL
-    url = "https://www.bodybuilding.com/exercises/finder/?muscle=" + filter
+    url = "https://www.bodybuilding.com/exercises/finder/?muscle=" + exercise_cat
+
 
     # Return results of html for muscle category
     result = requests.get(url)
@@ -33,16 +27,11 @@ def get_exercises():
         exercise = exercises[i].string.strip()
         url = exercises[i]['href']
         exercise_dict[exercise] = {
-            #exercise: {
-                #"name": exercise,
-                "category": filter,
+                "category": exercise_cat,
                 "url": "https://www.bodybuilding.com" + url
-            #}
+
         }
 
     # Write results to JSON
-    print(f"Sending exercises for {filter}.")
-    return jsonify(exercise_dict)
-
-if __name__ == '__main__':
-    app.run(port=9123, debug=True)
+    json_dump = json.dumps(exercise_dict)
+    return json_dump
