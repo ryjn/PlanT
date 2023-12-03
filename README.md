@@ -13,12 +13,12 @@ As an example in Python:
 import requests
 import json
 
-url = 'http://127.0.0.1:9123/get_exercises'
+url = "https://kimryan707.pythonanywhere.com/get_exercises"
 data = {
     'muscle category' : 'chest'
 }
 
-response = requests.post(url, json=data)
+response = requests.get(url, params=data)
 ```
 
 ## Receiving Data
